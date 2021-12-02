@@ -4,7 +4,7 @@ import java.awt.event.*;
 
 public class Window extends JFrame implements KeyListener, MouseListener, ActionListener {
 
-    JLabel label,label2;
+    JLabel label;
     JPanel panel;
     JButton button, reset;
     ImageIcon oval;
@@ -42,17 +42,16 @@ public class Window extends JFrame implements KeyListener, MouseListener, Action
         panel.addKeyListener(this);
 
         button = new JButton("Kliknij tutaj");
-        button.setBounds(140,450,100,50);
-        panel.add(button);
+        button.setBounds(140,500,100,50);
+        this.add(button);
         button.addMouseListener(this);
+        button.addActionListener(this);
 
         reset = new JButton("Reset");
-        reset.setBounds(450,450,100,50);
+        reset.setBounds(550,500,100,50);
         this.add(reset);
         reset.addActionListener(this);
 
-
-        //this.setLocationRelativeTo(null);
 
         this.setVisible(true);
 
@@ -103,9 +102,9 @@ public class Window extends JFrame implements KeyListener, MouseListener, Action
     @Override
     public void mouseEntered(MouseEvent e) {
 
+    button.setLocation(button.getX()-10, button.getY()-10);
 
 
-            button.setLocation(button.getX()-10, button.getY()-10);
 
 
     }
@@ -124,6 +123,11 @@ public class Window extends JFrame implements KeyListener, MouseListener, Action
         {
             button.setBounds(140,500,100,50);
             label.setVisible(false);
+        }
+        if(source == button)
+        {
+            button.setBounds(0,0,100,50);
+
         }
 
     }
