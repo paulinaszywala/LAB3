@@ -7,23 +7,31 @@ import java.awt.event.MouseListener;
 
 public class Window extends JFrame implements KeyListener, MouseListener {
 
-    Canva canva;
     JLabel label;
+    JPanel panel;
+    JButton button;
+
     ImageIcon oval;
     ImageIcon square;
+
 
 
     public Window(){
 
         this.setVisible(true);
+
         this.setTitle("Canva");
-        this.setSize(500,500);
+        this.setPreferredSize(new Dimension(600,600));
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLayout(new FlowLayout());
 
-        this.pack();
-        this.addMouseListener(this);
-        this.addKeyListener(this);
+        //panel = new JPanel();
+        //panel.setBackground(Color.pink);
+        //panel.setBounds(40,35,500,500);
+        //panel.setLayout(new FlowLayout());
+        //this.add(panel);
+
+        this.setPreferredSize(new Dimension(600,600));
 
         oval = new ImageIcon("oval.png");
         square = new ImageIcon("square.png");
@@ -32,19 +40,23 @@ public class Window extends JFrame implements KeyListener, MouseListener {
         label.addKeyListener(this);
 
         label.setIcon(oval);
-
         this.add(label);
         label.setVisible(false);
+
+        this.pack();
+        this.addMouseListener(this);
+        this.addKeyListener(this);
+
+        button = new JButton("Kliknij tutaj");
+        button.setBounds(230,500,100,50);
+        this.add(button);
+        button.addMouseListener(this);
+
+
 
         //this.setLocationRelativeTo(null);
 
 
-        /*JPanel canva = new JPanel();
-        canva.setBackground(Color.BLUE);
-        this.add(canva);*/
-
-       // canva = new Canva();
-        //this.add(canva);
 
     }
 
@@ -81,6 +93,9 @@ public class Window extends JFrame implements KeyListener, MouseListener {
     @Override
     public void mousePressed(MouseEvent e) {
 
+        label.setVisible(true);
+        label.setLocation(e.getX(),e.getY());
+
     }
 
     @Override
@@ -91,10 +106,17 @@ public class Window extends JFrame implements KeyListener, MouseListener {
     @Override
     public void mouseEntered(MouseEvent e) {
 
+
+
+            button.setLocation(button.getX()-10, button.getY()-10);
+
+
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
+
+
 
     }
 }
