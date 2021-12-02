@@ -1,15 +1,12 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.*;
 
-public class Window extends JFrame implements KeyListener, MouseListener {
+public class Window extends JFrame implements KeyListener, MouseListener, ActionListener {
 
     JLabel label;
     JPanel panel;
-    JButton button;
+    JButton button, reset;
 
     ImageIcon oval;
     ImageIcon square;
@@ -48,10 +45,14 @@ public class Window extends JFrame implements KeyListener, MouseListener {
         this.addKeyListener(this);
 
         button = new JButton("Kliknij tutaj");
-        button.setBounds(230,500,100,50);
+        button.setBounds(140,500,100,50);
         this.add(button);
         button.addMouseListener(this);
 
+        reset = new JButton("Reset");
+        reset.setBounds(320,500,100,50);
+        this.add(reset);
+        reset.addActionListener(this);
 
 
         //this.setLocationRelativeTo(null);
@@ -116,7 +117,18 @@ public class Window extends JFrame implements KeyListener, MouseListener {
     @Override
     public void mouseExited(MouseEvent e) {
 
+    }
 
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+        Object source = e.getSource();
+
+        if(source == reset)
+        {
+            button.setBounds(140,500,100,50);
+            label.setVisible(false);
+        }
 
     }
 }
